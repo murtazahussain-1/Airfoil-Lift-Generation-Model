@@ -30,14 +30,25 @@ In the heart of Bernoulli's Equation, the lift of an airfoil depends on the diff
 #### Inputs
 | Symbol | Meaning | Value Range |
 | ------ | ------- |------- |
-| ρ | Fluid Density |  |
-| g | Acceleration due to gravity[^5]| 9.80665 m/s^2 (Constant)|
-| v1 | Velocity Below the Airfoil |  |
-| v2 | Velocity on upper surface Airfoil |  |
-| h2 - h1 | Width of the airfoil |  |
-| A | Area of airfoil | |
-| m | Mass of an airplane | |
+| ρ | Air Density | 0.0316 - 1.2256 kg/m^3 |
+| g | Acceleration due to gravity | 9.80665 m/s^2 (Constant) |
+| v1 | Velocity Below the Airfoil | 0 - 330 m/s |
+| v2 | Velocity on upper surface Airfoil | 0 - 330 m/s |
+| h2 - h1 | Thickness of the airfoil | 0.84 - 1.8 m |
+| A | Area of airfoil | 51.18 - 817 m^2|
+| m | Mass of an airplane | 152900 - 220100 kg |
 
+• `ρ`: For air density, I used an online calculator [^5]. I kept the Temperature of air constant at 15 Celsius, humidity at 40%, atmospheric pressure at 29.9200 psi. I only changed the altitude from 0 ft to 42,000 ft, which is the maximum height a commercial airplane is allowed. Of course, in reality, all these parameters change with altitude, but to keep things simple, I made the air Density only dependent on the altitude
+
+• `g`:  Acceleration due to gravity[^6] is around 9.80665 m/s^2. Although, it slightly varies with altitude from the center of the Earth, but the change is so small that it can be kept constant
+
+• `v1` and `v2`: For commercial airplanes speeds can reach upto 737 mph or ~330 m/s [^7]
+
+• `h2 - h1`: After looking at various online resources. The thickness of an airfoil can range from 0.84 to 1.8 meters
+
+• `A`: Area of the airfoil of most commercial aircrafts range from 51.18 meters to 817 meters [^8]
+
+• `m`: Mass of an airplane[^9] can range from 152900 - 220100 kg
 
 #### Outputs
 | Symbol | Meaning |
@@ -79,4 +90,8 @@ F_lift = A ⋅ { (ρ/2)⋅{pow(v2, 2) - pow(v1, 2)} + (ρ⋅g)⋅(h2-h1) }
 [^2]: https://open.oregonstate.education/intermediate-fluid-mechanics/chapter/the-panel-method-an-introduction/
 [^3]: https://www.grc.nasa.gov/www/k-12/rocket/lifteq.html
 [^4]: https://www.grc.nasa.gov/www/k-12/airplane/nseqs.html
-[^5]: https://en.wikipedia.org/wiki/Gravitational_acceleration
+[^5]: https://www.engineersedge.com/calculators/air-density.htm 
+[^6]: https://en.wikipedia.org/wiki/Gravitational_acceleration
+[^7]: https://www.flyingmag.com/guides/how-fast-do-commerical-planes-fly/
+[^8]: https://en.wikipedia.org/wiki/Thickness-to-chord_ratio
+[^9]: https://euflightcompensation.com/how-much-does-a-plane-weigh/
