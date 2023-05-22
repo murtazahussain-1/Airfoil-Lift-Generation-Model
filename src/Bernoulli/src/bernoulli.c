@@ -66,27 +66,27 @@ static void load_values(double *rho, double *v1, double *v2, double *h2_h1_airfo
 
 	// Air density should follow the gaussian distribution
 	*rho = libUncertainDoubleGaussDist(0.597, 0.199);
-	printf("rho = %lf\n", *rho);
+	printf("rho (kg/m³) = %lf\n", *rho);
 
 	// v1 and v2 usually center around at the mean value hence using Gaussian
 	*v1  = libUncertainDoubleGaussDist(132.5, 44.16666);
-	printf("v1 = %lf\n", *v1);
+	printf("v1 (m/s) = %lf\n", *v1);
 
 	// v2 should slightly be higher, in order to accomodate the mass of the airplane
 	*v2  = libUncertainDoubleGaussDist(165, 55);
-	printf("v2 = %lf\n", *v2);
+	printf("v2 (m/s) = %lf\n", *v2);
 
 	// Airfoil thickness can vary drastically, hence using uniform distribution
 	*h2_h1_airfoil_thickness = libUncertainDoubleUniformDist(0.84, 1.8);
-	printf("h2-h1 = %lf\n", *h2_h1_airfoil_thickness);
+	printf("h2-h1 (m) = %lf\n", *h2_h1_airfoil_thickness);
 
 	// Using empirical distribution for area of the airfoil
 	*A = libUncertainDoubleDistFromSamples(empirical_dist_area, sizeof(empirical_dist_area)/sizeof(double));
-	printf("A = %lf\n", *A);
+	printf("A (m^2) = %lf\n", *A);
 
 	// Mass of an airplane can vary drastically, hence using uniform distribution
 	*m = libUncertainDoubleUniformDist(85000, 220100);
-	printf("m = %lf\n", *m);
+	printf("m (kg) = %lf\n", *m);
 
 }
 
@@ -103,7 +103,7 @@ int main(void)
 	
     // Lift force on a single airfoil
 	double F_lift = A * P1_P2_difference;
-	printf("F_lift(N) = %lf\n", F_lift);
+	printf("F_lift (N) = %lf\n", F_lift);
 
     // Lift force accounting both the airfoils and the mass of the airplane
 	double F_lift_adjusted = (2 * F_lift) - (m * g);
@@ -121,7 +121,7 @@ int main(void)
 		printf("Airplane is not changing elevation level\n");
 	}
 
-    printf("F_lift subtracting the weight of the airplane(N) = %lf\n", F_lift_adjusted);
+    printf("F_lift subtracting the weight of the airplane (N) = %lf\n", F_lift_adjusted);
 
 	return 0;
 }
