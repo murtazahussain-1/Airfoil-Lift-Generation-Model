@@ -15,7 +15,7 @@ There are three main methods in fluid dynamics, by which we can analyze the lift
 
 To keep things simple, I will be avoiding Navier Stokes Equations, because using them can be a complicated process. Instead, I will be following the first two methods to model the lift. Not only they are simple to understand, but they also cater in a decent amount of variables.
 
-## Model using Bernoulli's equation
+# Model using Bernoulli's equation
 In the heart of Bernoulli's Equation, the lift of an airfoil depends on the difference between the pressure below the airfoil (P1) and pressure above the airfoil (P2).
 
 | Relationship between P1 & P2 | Lift |
@@ -24,10 +24,10 @@ In the heart of Bernoulli's Equation, the lift of an airfoil depends on the diff
 | P1 = P2 | No lift |
 | P1 < P2 | Lift would be downwards |
 
-### Equation
+## Equation
 ![image](https://github.com/murtazahussain-1/Airfoil-Lift-Generation-Model/assets/118768714/3aa53adb-193e-4ef0-9db7-8c85f4ae2db7)
 
-#### Inputs
+## Inputs
 | Symbol | Meaning | Value Range |
 | ------ | ------- |------- |
 | ρ | Air Density | 0.0316 - 1.2256 kg/m^3 |
@@ -50,14 +50,14 @@ In the heart of Bernoulli's Equation, the lift of an airfoil depends on the diff
 
 • `m`: After looking through muliple online resources. Mass of an airplane[^9] can range from 85000 - 220100 kg. Although, private jets can have a mass even lower than 85,000 kg
 
-#### Outputs
+## Outputs
 | Symbol | Meaning |
 | ------ | ------- |
 | P1 - P2 | Difference of pressure between both surfaces of an airfoil (N / m^2) |
 | F_lift | Lift Force on an airfoil (N) |
 | F_lift_adjusted | Lift force accounting both the airfoils and the mass of the airplane (N) |
 
-#### Simplifying the equation to get the airlift:
+## Simplifying the equation to get the airlift:
 ```             
            ρ ⋅ pow(v2, 2)                    ρ ⋅ pow(v1, 2)
 P1 - P2 =  ______________  + (ρ ⋅ g ⋅ h2) -  ______________ -  (ρ ⋅ g ⋅ h1)
