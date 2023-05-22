@@ -85,6 +85,14 @@ A ⋅ (P1 - P2) = A ⋅ { (ρ/2)⋅{pow(v2, 2) - pow(v1, 2)} + (ρ⋅g)⋅(h2-h1
 F_lift = A ⋅ { (ρ/2)⋅{pow(v2, 2) - pow(v1, 2)} + (ρ⋅g)⋅(h2-h1) }  
 ```
 
+---
+# Model using Panel Method (Lift Equation)
+Lift equation is one of the most popular methods of calculating lift force on an airfoil.
+
+
+
+
+
 # References
 [^1]: https://en.wikipedia.org/wiki/Bernoulli%27s_principle
 [^2]: https://open.oregonstate.education/intermediate-fluid-mechanics/chapter/the-panel-method-an-introduction/
