@@ -87,11 +87,32 @@ F_lift = A ⋅ { (ρ/2)⋅{pow(v2, 2) - pow(v1, 2)} + (ρ⋅g)⋅(h2-h1) }
 
 ---
 # Model using Panel Method (Lift Equation)
-Lift equation is one of the most popular methods of calculating lift force on an airfoil.
+Lift equation is one of the most popular methods of calculating lift force on an airfoil. Lift equation states that, lift depends on the density of the air, the square of the velocity, the air's viscosity and compressibility, the surface area over which the air flows, the shape of the body, and the body's inclination to the flow. In general, the dependence on body shape, inclination, air viscosity, and compressibility are very complex [^3].
 
+## Equation
+![image](https://github.com/murtazahussain-1/Airfoil-Lift-Generation-Model/assets/118768714/48e51505-3c67-41a6-a9c6-fd8506de5014)
 
+## Inputs
+| Symbol | Meaning | Value Range |
+| ------ | ------- |------- |
+| ρ | Air Density | 0.0316 - 1.2256 kg/m^3 |
+| g | Acceleration due to gravity | 9.80665 m/s^2 (Constant) |
+| v | Velocity | 0 - 330 m/s |
+| Cl | Lift coefficient | 1.2 - 3.3 | 
+| A | Area of airfoil | 51.18 - 817 m^2|
+| m | Mass of an airplane | 85000 - 220100 kg |
 
+• For `ρ`, `g`, `A` and `m`, I have mentioned the reasons and sources above
 
+• For `v`: Lift equation doesn't care about the velocities above or below the airfoil. Hence, I am going with the maximum value for velocity
+
+• For `Cl`: Coefficient of lift (Cl) is a critical component of the lift equation and is specific to the airfoil design, angle of attack, and other aerodynamic factors. Determining the coefficient of lift typically requires wind tunnel testing, computational fluid dynamics (CFD) simulations, or empirical data specific to the airfoil design. A document[^10] from University of Texas, states its normal values.
+
+## Outputs
+| Symbol | Meaning |
+| ------ | ------- |
+| F_lift | Lift Force on an airfoil (N) |
+| F_lift_adjusted | Lift force accounting both the airfoils and the mass of the airplane (N) |
 
 # References
 [^1]: https://en.wikipedia.org/wiki/Bernoulli%27s_principle
@@ -103,3 +124,4 @@ Lift equation is one of the most popular methods of calculating lift force on an
 [^7]: https://www.flyingmag.com/guides/how-fast-do-commerical-planes-fly/
 [^8]: https://en.wikipedia.org/wiki/Thickness-to-chord_ratio
 [^9]: https://euflightcompensation.com/how-much-does-a-plane-weigh/
+[^10]: http://www.ae.utexas.edu/~varghesep/class/aircraft/Suggestions.pdf
