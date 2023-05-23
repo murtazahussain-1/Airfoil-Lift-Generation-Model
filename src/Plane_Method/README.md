@@ -1,0 +1,1 @@
+# Model using Plane Method (Lift Equation)
