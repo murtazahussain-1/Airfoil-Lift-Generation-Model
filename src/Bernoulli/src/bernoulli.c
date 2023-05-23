@@ -92,6 +92,8 @@ static void load_values(double *rho, double *v1, double *v2, double *h2_h1_airfo
 
 int main(void)
 {
+	printf("Model using bernoulli's principle\n");
+
 	double rho, v1, v2, h2_h1_airfoil_thickness, A, m;
 
 	// Loading values into our input variables

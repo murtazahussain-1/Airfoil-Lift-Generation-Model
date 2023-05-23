@@ -124,6 +124,8 @@ static void load_values(double *rho, double *v, double *Cl, double *A, double *m
 
 int main(void)
 {
+	printf("Model using Plane Method (Lift equation)\n");
+
 	double rho, v, Cl, A, m;
 
 	// Loading values into our input variables
