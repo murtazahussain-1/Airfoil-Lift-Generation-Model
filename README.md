@@ -1,127 +1,56 @@
-[<img src="https://assets.signaloid.io/add-to-signaloid-cloud-logo-dark-v6.png#gh-dark-mode-only" alt="[Add to signaloid.io]" height="30">](https://signaloid.io/repositories?connect=https://github.com/signaloid/Signaloid-Demo-General-C#gh-dark-mode-only)
-[<img src="https://assets.signaloid.io/add-to-signaloid-cloud-logo-light-v6.png#gh-light-mode-only" alt="[Add to signaloid.io]" height="30">](https://signaloid.io/repositories?connect=https://github.com/signaloid/Signaloid-Demo-General-C#gh-light-mode-only)
+[<img src="https://assets.signaloid.io/add-to-signaloid-cloud-logo-light-v6.svg#gh-light-mode-only" alt="[Add to signaloid.io]" height="30"/>](https://signaloid.io/repositories?connect=<https://github.com/murtazahussain-1/Airfoil-Lift-Generation-Model>#gh-light-mode-only)
 
-# Airfoil Lift Modelling & Analysis using Signaloid's Cloud Platform
-In this project, I have created models of lift of an airfoil using equations of fluid dynamics and analyzed it by inserting uncertainties in various variables using Signaloid's cloud platform and probability distribution methodologies.
+# Simulation of an Airfoil Lift Design
 
-![image](https://github.com/murtazahussain-1/Airfoil-Lift-Generation-Model/assets/118768714/79308d0d-4ace-4917-8218-50e5d44d76cc)
+The airplane generates an airlift using its wings and its cross-sectional shape is called an airfoil.
+The design of an airfoil depends on the specific characteristics that determine its aerodynamic performance. The optimization of these parameters helps designers create airfoils that meet specific performance requirements for various applications, such as aircraft wings, helicopter blades, and wind turbines.
 
-# Introduction
-There are three main methods in fluid dynamics, by which we can analyze the lift of an airfoil.
+## Overview
 
-* Using the Bernoulli's equation [^1]
-* Using the Panel Method (Lift Equation) [^2] [^3]
-* Using Navier Stokes Equations [^4]
+In this tutorial, we will create models for lifting an airfoil using equations of fluid dynamics. Then, we will analyze it by inserting uncertainties in various variables using [Signaloid Cloud Platform](https://docs.signaloid.io/docs/platform/#signaloid-cloud-developer-platform-1) and probability distribution methodologies.
 
-To keep things simple, I will be avoiding Navier Stokes Equations, because using them can be a complicated process. Instead, I will be following the first two methods to model the lift. Not only they are simple to understand, but they also cater in a decent amount of variables.
+![Airfoil lift for an aeroplane](images/diagram.png)
 
-# Model using Bernoulli's equation
-In the heart of Bernoulli's Equation, the lift of an airfoil depends on the difference between the pressure below the airfoil (P1) and pressure above the airfoil (P2).
+## Methods to analyze an airfoil lift
 
-| Relationship between P1 & P2 | Lift |
-| ----------------- | ------------------------------------------------------------------ |
-| P1 > P2 | Lift would be upwards |
-| P1 = P2 | No lift |
-| P1 < P2 | Lift would be downwards |
+You can analyze the lift of an airfoil by using the following two main methods in fluid dynamics and run them on the Signaloid Cloud Platform:
 
-## Equation
-![image](https://github.com/murtazahussain-1/Airfoil-Lift-Generation-Model/assets/118768714/3aa53adb-193e-4ef0-9db7-8c85f4ae2db7)
+* [Bernoulli's equation](src/Bernoulli/README.md)
+* [Lift equation (Panel method)](src/Plane_Method/README.md)
 
-## Inputs
-| Symbol | Meaning | Value Range |
-| ------ | ------- |------- |
-| ρ | Air Density | 0.0316 - 1.2256 kg/m^3 |
-| g | Acceleration due to gravity | 9.80665 m/s^2 (Constant) |
-| v1 | Velocity Below the Airfoil | 0 - 265 m/s |
-| v2 | Velocity on upper surface Airfoil | 0 - 330 m/s |
-| h2 - h1 | Thickness of the airfoil | 0.84 - 1.8 m |
-| A | Area of airfoil | 51.18 - 817 m^2|
-| m | Mass of an airplane | 85000 - 220100 kg |
+## Getting started
 
-• `ρ`: For air density, I used an online calculator [^5]. I kept the Temperature of air constant at 15 Celsius, humidity at 40%, atmospheric pressure at 29.9200 psi. I only changed the altitude from 0 ft to 42,000 ft, which is the maximum height a commercial airplane is allowed. Of course, in reality, all these parameters change with altitude, but to keep things simple, I made the air Density only dependent on the altitude
+The [Signaloid Cloud Platform](https://signaloid.io/login/?r=signup) is designed to run and leverage several functions from the Signaloid libraries to handle uncertainty in input parameters. 
 
-• `g`:  Acceleration due to gravity[^6] is around 9.80665 m/s^2. Although, it slightly varies with altitude from the center of the Earth, but the change is so small that it can be kept constant
+You need to run your source code snippets on Signaloid's processors to determine the airlift values of the airfoil. The code editor of the Signaloid Cloud Developer Platform allows you to quickly edit and run single-source-file applications using an in-browser version of the [Visual Studio Code](https://vscode.dev/) editor. In this repository, you can find the source codes for the following implementations:
 
-• `v1` and `v2`: For commercial airplanes speeds can reach upto 737 mph or ~330 m/s. v1 is kept slightly smaller in order to accomodate the mass of the airplane [^7]
+* [Benoulli's equation](src/Bernoulli/src/bernoulli.c)
+* [Lift equation](src/Plane_Method/src/plane_method.c)
 
-• `h2 - h1`: After looking at various online resources. The thickness of an airfoil can range from 0.84 to 1.8 meters
+For more information, see [Running Source Code with the Code Editor](https://docs.signaloid.io/docs/platform/getting-started/code/).
 
-• `A`: Area of the airfoil of most commercial aircrafts range from 51.18 meters to 817 meters [^8]
+### Signaloid library 
 
-• `m`: After looking through muliple online resources. Mass of an airplane[^9] can range from 85000 - 220100 kg. Although, private jets can have a mass even lower than 85,000 kg
+Signaloid Cloud Platform uses the `uxhw.h` library for both of the calculation methods to facilitate high-performance computing tasks involving uncertainty quantification. For more information, see [Uncertainty Hexadecimal (“Ux”) Data Format](https://docs.signaloid.io/docs/hardware-api/ux-data-format/).
 
-## Outputs
-| Symbol | Meaning |
-| ------ | ------- |
-| P1 - P2 | Difference of pressure between both surfaces of an airfoil (N / m^2) |
-| F_lift | Lift Force on an airfoil (N) |
-| F_lift_adjusted | Lift force accounting both the airfoils and the mass of the airplane (N) |
+### Signaloid functions 
 
-## Simplifying the equation to get the airlift:
-```             
-           ρ ⋅ pow(v2, 2)                    ρ ⋅ pow(v1, 2)
-P1 - P2 =  ______________  + (ρ ⋅ g ⋅ h2) -  ______________ -  (ρ ⋅ g ⋅ h1)
-                 2                                2      
-```
-```             
-P1 - P2 =    (ρ/2)⋅{pow(v2, 2) - pow(v1, 2)}  +  (ρ⋅g)⋅(h2 - h1)  
-```
-At this point we have calculated the pressure difference between upper and lower surfaces of the airfoil. This should give us some idea about the lift on the airfoil. However, this is the pressure difference. To get the actual lift, which is the force on the airfoil, we need to multiply both sides by the Area (A) of the Airfoil
+Signaloid Cloud Platform uses the following functions from the `uxhw.h` library for both of the calculation methods:
 
-We know that:
-```
-P = F / A
+* **UxHwDoubleGaussDist**: generates a Gaussian (normal) distribution for air density (𝜌) and velocity (𝑣).
 
-So,
+* **UxHwDoubleDistFromSamples**: generates a distribution based on empirical data for the lift coefficient (𝐶𝑙) and the area of the airfoil (𝐴).
 
-F_lift = A ⋅ (P1 - P2)
-```
+* **UxHwDoubleUniformDist**: generates a uniform distribution for the mass of the airfoil (𝑚).
 
-```
-A ⋅ (P1 - P2) = A ⋅ { (ρ/2)⋅{pow(v2, 2) - pow(v1, 2)} + (ρ⋅g)⋅(h2-h1) }  
-```
+## Benefits
 
-```
-F_lift = A ⋅ { (ρ/2)⋅{pow(v2, 2) - pow(v1, 2)} + (ρ⋅g)⋅(h2-h1) }  
-```
+The following are some benefits offered by Signaloid Cloud Platform while solving airfoil lift equations:
 
----
-# Model using Panel Method (Lift Equation)
-Lift equation is one of the most popular methods of calculating lift force on an airfoil. Lift equation states that, lift depends on the density of the air, the square of the velocity, the air's viscosity and compressibility, the surface area over which the air flows, the shape of the body, and the body's inclination to the flow. In general, the dependence on body shape, inclination, air viscosity, and compressibility are very complex [^3].
+* By using probabilistic distributions for inputs, you can simulate a range of possible outcomes, providing a better understanding of the variability in lift forces.
 
-## Equation
-![image](https://github.com/murtazahussain-1/Airfoil-Lift-Generation-Model/assets/118768714/48e51505-3c67-41a6-a9c6-fd8506de5014)
+* The parallel processing allows efficient handling of simulations and complex calculations increasing the scalability.
 
-## Inputs
-| Symbol | Meaning | Value Range |
-| ------ | ------- |------- |
-| ρ | Air Density | 0.0316 - 1.2256 kg/m^3 |
-| g | Acceleration due to gravity | 9.80665 m/s^2 (Constant) |
-| v | Velocity | 0 - 330 m/s |
-| Cl | Lift coefficient | 1.2 - 3.3 | 
-| A | Area of airfoil | 51.18 - 817 m^2|
-| m | Mass of an airplane | 85000 - 220100 kg |
+* The accelerated computations ensure quicker execution and enhanced performance.
 
-• For `ρ`, `g`, `A` and `m`, I have mentioned the reasons and sources above
-
-• For `v`: Lift equation doesn't care about the velocities above or below the airfoil. Hence, I am going with the maximum value for velocity
-
-• For `Cl`: Coefficient of lift (Cl) is a critical component of the lift equation and is specific to the airfoil design, angle of attack, and other aerodynamic factors. Determining the coefficient of lift typically requires wind tunnel testing, computational fluid dynamics (CFD) simulations, or empirical data specific to the airfoil design. A document[^10] from University of Texas, states its normal values.
-
-## Outputs
-| Symbol | Meaning |
-| ------ | ------- |
-| F_lift | Lift Force on an airfoil (N) |
-| F_lift_adjusted | Lift force accounting both the airfoils and the mass of the airplane (N) |
-
-# References
-[^1]: https://en.wikipedia.org/wiki/Bernoulli%27s_principle
-[^2]: https://open.oregonstate.education/intermediate-fluid-mechanics/chapter/the-panel-method-an-introduction/
-[^3]: https://www.grc.nasa.gov/www/k-12/rocket/lifteq.html
-[^4]: https://www.grc.nasa.gov/www/k-12/airplane/nseqs.html
-[^5]: https://www.engineersedge.com/calculators/air-density.htm 
-[^6]: https://en.wikipedia.org/wiki/Gravitational_acceleration
-[^7]: https://www.flyingmag.com/guides/how-fast-do-commerical-planes-fly/
-[^8]: https://en.wikipedia.org/wiki/Thickness-to-chord_ratio
-[^9]: https://euflightcompensation.com/how-much-does-a-plane-weigh/
-[^10]: http://www.ae.utexas.edu/~varghesep/class/aircraft/Suggestions.pdf
+* You can analyze the probability density for each input and result using real-time graphs.
